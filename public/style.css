@@ -1,0 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body{
+  background-color: #0c1627;
+}
+
+
+.heading{
+  font-family: Arial;
+  margin-top: 30vh;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.URL-input, .mp3-button, .mp4-button{
+  font-size: 1.3rem;
+  padding: 5px 10px;
+}
+
+.URL-input{
+  border-radius: 4px 0 0 4px;
+  width: 30rem;
+  text-align: left;
+  border: 2px solid #eee;
+  background: #eee;
+  outline: none;
+
+}
+
+.URL-input:focus{
+  border: 2px solid #0485ff;
+}
+
+.mp3-button, .mp4-button{
+  cursor: pointer;
+  border-radius: 4px 4px 4px 4px;
+  border: 2px solid #0485ff;
+  background: #0485ff;
+  color: white;
+  margin: 10px 0px 0px 5px;
+}
+
+.mp4-portion{
+  display: inline;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  font-family: Arial;
+  margin-left:80px;
+  background-color: #eee;
+  min-width: 80px;
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color:#0485ff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #fafafa}
+
+/* Show the dropdown menu on hover */
+.mp4-portion:hover .dropdown-content {
+  display: inline-block;
+}
+
+@media screen and (min-width: 300px){
+	.URL-input{
+    width: 17rem;
+    margin: 0 20px;
+  }
+}
+
+
+@media screen and (min-width: 600px){
+	.URL-input{
+    width: 25rem;
+    margin: 0 20px;
+  }
+}
+
+
+
+
+
