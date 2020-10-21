@@ -3,16 +3,11 @@ const fs = require('fs')
 const cors = require('cors');
 const ytdl = require('ytdl-core')
 
-const { promisify } = require('util')
-const getInfoVideo =  promisify(ytdl.getInfo)
-
 const app = express();
 var application_root = __dirname
 
-
-//port is 3000
 app.listen(3000, () =>{
-  console.log('Server is working');
+  console.log('Server is working at port: 3000');
 });
 
 
@@ -23,7 +18,7 @@ app.use(express.static(application_root + "/public"));
 app.get('/download', async (req, res) =>{
   var URL = req.query.URL;
   var File = req.query.File;
-  
+
   var code;
   if(File === 'mp3'){
     code = 'highestaudio';
@@ -32,18 +27,26 @@ app.get('/download', async (req, res) =>{
   }
 
   try {
-    const info = await getInfoVideo(URL.replace('https://www.youtube.com/watch?v=', ''))
+      //get information about the youtube video
+      let info = await ytdl.getInfo(URL)
 
-    res.writeHead(200, {
-    'Content-Type': 'application/force-download',
-    'Content-disposition': `attachment; filename=${info.videoDetails.title}.${File}`
-    });
+      try{
+        //name the file as the Youtube title & attaching the format
+        res.header('Content-Disposition', `attachment; filename=${info.videoDetails.title}.${File}`);
+      }catch(err){
+        //If the title has characters that are not allowed, use the Youtube url as title instead
+        res.header('Content-Disposition', `attachment; filename=${URL}.${File}`);
+      }
+      
 
-    ytdl(URL,{
-      quality: `${code}`
-    }).pipe(res)
+      ytdl(URL,{
+        quality: `${code}`
+      }).pipe(res)
+      
+  
+    } catch (err) {
+        console.log(err);
+    }
 
-  } catch (err) {
-    res.status(500).json(err)
-  }
+
 })
