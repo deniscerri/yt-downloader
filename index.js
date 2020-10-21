@@ -2,6 +2,7 @@ const express = require('express')
 const fs = require('fs')
 const cors = require('cors');
 const ytdl = require('ytdl-core')
+const contentDisposition = require('content-disposition');
 
 const app = express();
 var application_root = __dirname
@@ -30,13 +31,8 @@ app.get('/download', async (req, res) =>{
       //get information about the youtube video
       let info = await ytdl.getInfo(URL)
 
-      try{
-        //name the file as the Youtube title & attaching the format
-        res.header('Content-Disposition', `attachment; filename=${info.videoDetails.title}.${File}`);
-      }catch(err){
-        //If the title has characters that are not allowed, use the Youtube url as title instead
-        res.header('Content-Disposition', `attachment; filename=${URL}.${File}`);
-      }
+       res.writeHead(200, {'Content-Type': 'application/force-download',
+                'Content-disposition':contentDisposition(title)});
       
 
       ytdl(URL,{
