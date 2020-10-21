@@ -2,7 +2,6 @@ const express = require('express')
 const fs = require('fs')
 const cors = require('cors');
 const ytdl = require('ytdl-core')
-const ytpl = require('ytpl');
 
 const { promisify } = require('util')
 const getInfoVideo =  promisify(ytdl.getInfo)
@@ -23,20 +22,7 @@ app.use(express.static(application_root + "/public"));
 app.get('/download', async (req, res) =>{
   var URL = req.query.URL;
   var File = req.query.File;
-  var list = req.query.list;
-  var songqueue = 1;
-  var pl;
-
-  if(list != undefined){
-    pl = await ytpl(list);
-    console.log(pl);
-    songqueue = pl.total_items;
-  }
-
   
-
-
-
   var code;
   if(File === 'mp3'){
     code = 'highestaudio';
