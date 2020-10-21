@@ -6,7 +6,6 @@ const ytdl = require('ytdl-core')
 const { promisify } = require('util')
 const getInfoVideo =  promisify(ytdl.getInfo)
 
-
 const app = express();
 var application_root = __dirname
 
@@ -33,22 +32,18 @@ app.get('/download', async (req, res) =>{
   }
 
   try {
+    const info = await getInfoVideo(URL.replace('https://www.youtube.com/watch?v=', ''))
 
-        const info = await getInfoVideo(URL.replace('https://www.youtube.com/watch?v=', ''))
+    res.writeHead(200, {
+    'Content-Type': 'application/force-download',
+    'Content-disposition': `attachment; filename=${info.videoDetails.title}.${File}`
+    });
 
-        res.writeHead(200, {
-        'Content-Type': 'application/force-download',
-        'Content-disposition': `attachment; filename=${info.videoDetails.title}.${File}`
-        });
+    ytdl(URL,{
+      quality: `${code}`
+    }).pipe(res)
 
-        
-
-
-        ytdl(URL,{
-          quality: `${code}`
-        }).pipe(res)
-
-    } catch (err) {
-        res.status(500).json(err)
-    }
+  } catch (err) {
+    res.status(500).json(err)
+  }
 })
