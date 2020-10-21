@@ -8,5 +8,5 @@
 - Put the youtube video link in the URL Bar and press mp3 or mp4. Easy! Enjoy :)
 
 # Link:
-[Click Here](<a href="https://ytdl.deniscerri.repl.co/" target="_blank">Hello, world!</a>)
+<a href="https://ytdl.deniscerri.repl.co/" target="_blank">Click Here!</a>)
 
