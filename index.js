@@ -20,7 +20,7 @@ app.listen(port, () =>{
 
 app.use(cors());
 
-app.use(express.static(application_root + "/"));
+app.use(express.static(application_root + "/public"));
 
 app.get('/download', async (req, res) =>{
   var URL = req.query.URL;
