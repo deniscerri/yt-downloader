@@ -10,8 +10,11 @@ const getInfoVideo =  promisify(ytdl.getInfo)
 const app = express();
 var application_root = __dirname
 
-app.listen(3000, () =>{
-  console.log('Server is working at port: 3000');
+var port = process.env.port || 8080
+
+
+app.listen(port, () =>{
+  console.log('Server is working');
 });
 
 
