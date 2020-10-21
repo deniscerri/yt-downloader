@@ -15,5 +15,5 @@ convertBtn2.addEventListener("click", function(){
 })
 
 function sendURL(URL,FILE){
-  window.location.href = `http://denisyt.herokuapp.com/download?URL=${URL}&File=${FILE}`
+  window.location.href = `https://denisyt.herokuapp.com/download?URL=${URL}&File=${FILE}`
 }
