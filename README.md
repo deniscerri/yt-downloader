@@ -9,4 +9,5 @@
 
 # Link:
 <a href="https://ytdl.deniscerri.repl.co/" target="_blank">Click Here!</a>
+This is a repl link. Ffmpeg doesn't work there so for now mp4's won't have the highest quality possible. Mp3's are fine on the other hand.
 
