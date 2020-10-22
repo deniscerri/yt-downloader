@@ -19,6 +19,7 @@ app.listen(port, () =>{
 });
 
 
+
 app.use(cors());
 
 app.use(express.static(application_root + "/public"));
