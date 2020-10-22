@@ -5,15 +5,11 @@ var URLinput = document.querySelector('.URL-input');
 
 convertBtn.addEventListener("click", function(){
   console.log(`URL:${URLinput.value}`);
-  sendURL(URLinput.value, 'mp3');
+  window.location.href = `http://localhost:3000/download/MP3/?URL=${URLinput.value}`
 })
 
 
 convertBtn2.addEventListener("click", function(){
   console.log(`URL:${URLinput.value}`);
-  sendURL(URLinput.value, 'mp4');
+  window.location.href = `http://localhost:3000/download/MP4?URL=${URLinput.value}`
 })
-
-function sendURL(URL,FILE){
-  window.location.href = `http://ytdl.deniscerri.repl.co/download?URL=${URL}&File=${FILE}`
-}
