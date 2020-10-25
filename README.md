@@ -6,7 +6,7 @@
 
 # How to use:
 - Put the youtube video link in the URL Bar and press mp3 or mp4. Easy! Enjoy :)
-- Put the soundcloud song link in the URL Bar and prsee mp3.
+- Put the soundcloud song link in the URL Bar and press mp3.
 
 # Link:
 [Click Here!](https://ytdl.deniscerri.repl.co/)
