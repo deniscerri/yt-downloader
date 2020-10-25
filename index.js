@@ -1,7 +1,10 @@
 const express = require('express')
 const fs = require('fs')
 const cors = require('cors');
+
 const ytdl = require('ytdl-core')
+const scdl = require('soundcloud-downloader');
+
 const contentDisposition = require('content-disposition');
 
 const ffmpeg = require('fluent-ffmpeg');
@@ -12,12 +15,9 @@ const ffmpeg = require('fluent-ffmpeg');
 const app = express();
 var application_root = __dirname
 
-var port = process.env.port || 8080
-
-app.listen(port, () =>{
-  console.log('Server is working');
+app.listen(3000, () =>{
+  console.log('Server is working at port: 3000');
 });
-
 
 
 app.use(cors());
@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.static(application_root + "/public"));
 
 
-app.get('/download/MP3', async (req, res) =>{
+app.get('/download/yt', async (req, res) =>{
   var URL = req.query.URL;
  
   try {
@@ -52,6 +52,37 @@ app.get('/download/MP3', async (req, res) =>{
     }
 
 
+})
+
+scID = process.env.scID;
+
+app.get('/download/sc', async (req, res) =>{
+  var URL = req.query.URL;
+
+  try {
+
+    let info = await scdl.getInfo(URL, scID);
+    let filename = info.publisher_metadata.artist +" - "+ info.title+".mp3";
+
+    res.writeHead(200, {
+      'Content-Type': 'application/force-download',
+      'Content-disposition':contentDisposition(filename)});
+
+
+         // Get audio and video stream going
+    const audio = scdl.download(URL, scID).then(stream => stream.pipe(res));
+     
+
+  } catch (err) {
+      console.log(err);
+  }
+
+
+})
+
+app.get('/download/sp', async (req, res) =>{
+  var URL = req.query.URL;
+  
 })
 
 app.get('/download/MP4', async (req, res) =>{
