@@ -17,7 +17,7 @@
 
 # Link:
 [Click Here!](https://ytdl.deniscerri.repl.co/)
-This is a repl link. Ffmpeg doesn't work there so for now mp4's won't have the highest quality possible. Mp3's are fine on the other hand.
+This is a repl link. Ffmpeg doesn't work there so for now mp4's won't have the highest quality possible. Audios are fine on the other hand.
 
 ---
 # ToDo:
