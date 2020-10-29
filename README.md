@@ -4,11 +4,10 @@
 
 ---
 # Changelog:
+-v1.0 - Create project. Basic audio/video download functionality
+-v1.1 - SoundCloud Download Functionality
+-v2.0 - Design Overhaul. Youtube Search Functionality 
 
-  -v1.0 - Create project. Basic audio/video download functionality
-  -v1.1 - SoundCloud Download Functionality
-  -v2.0 - Design Overhaul. Youtube Search Functionality 
-  
 ---
 
 # How to use:
@@ -22,9 +21,10 @@ This is a repl link. Ffmpeg doesn't work there so for now mp4's won't have the h
 
 ---
 # ToDo:
-
-  -playlist support
-  -select quality
-  -add download progress in interface
-  -add extra details for search results like video Length, download Size, channel name etc...
+- [x] soundloud support
+- [x] search function
+- [] playlist support
+- [] select quality
+- [] add download progress in interface
+- [] add extra details for search results like video Length, download Size, channel name etc...
 
