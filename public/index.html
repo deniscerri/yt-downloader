@@ -5,16 +5,36 @@
    <title>Denis' Youtube Downloader</title>
     <link rel="shortcut icon" href="https://www.iconfinder.com/data/icons/hawcons/32/698392-icon-129-cloud-download-512.png" type="image/x-icon" />
    <link rel="stylesheet" href="style.css">
+   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   </head>
   <body>
+    <div class="container">
+      <div class="searchArea">
+          <h1 class="heading">Denis' Youtube Downloader</h1>
+          <input type="text" class="URL-input" placeholder="Search or Insert Youtube Video Link...">
+          <button class="button" id="search-button">Search</button><br>
+          <button class="button" id="mp3-button">Audio</button>
+          <button class="button" id="mp4-button">MP4</button><br>
+      </div>
+      <div class="resultsArea">
+          <div class="results-item">
+              <div class="results-img">
+                <img id="results-img" src="https://shqiptarja.com//uploads/ckeditor/5f9a9f0d8468eWATERMARK_REPORT_tv.00_00_00_06.Still014.jpg">
+              </div>
+              <div class="results-info">
+                <h1 id="title">Result Sample</h1>
+                <button class="button" id="mp3-button" onclick="downloadMp3(this.id);">Audio</button>
+                <button class="button" id="mp4-button" onclick="downloadMp4(this.id);">Video</button>
+               </div>
+          </div>
 
-    <h1 class="heading">Denis' Youtube Downloader</h1>
-    <input type="text" class="URL-input" placeholder="Enter video url..."><br>
-    <button class="mp3-button">MP3</button>
-    <div class="mp4-portion">
-    <button class="mp4-button">MP4</button><br>
+      </div>
+    </div>
+    
+    <footer>© 2020 Denis Çerri.</footer>
 
-
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
   </body>
+
+
 </html>

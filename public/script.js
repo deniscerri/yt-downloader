@@ -1,57 +1,152 @@
-var mp3Btn = document.querySelector('.mp3-button');
-var mp4Btn = document.querySelector('.mp4-button');
+var mp3Btn = document.querySelector('#mp3-button');
+mp3Btn.style.display = 'none';
+
+var mp4Btn = document.querySelector('#mp4-button');
+mp4Btn.style.display = 'none';
+
 var URLinput = document.querySelector('.URL-input');
+var searchBtn = document.querySelector('#search-button')
 
 
 window.addEventListener("pageshow", () => {
   URLinput.value = "";
 });
 
-var source = 'yt'
+var source = 'yt';
 
 URLinput.addEventListener('input', inputQuery)
 
+//Event Listeners is you enter youtube link.
+mp3Btn.addEventListener("click", function(){downloadMp3(this.id)})
+mp4Btn.addEventListener("click", function(){downloadMp4(this.id)})
 
-function inputQuery(e){
-  URLinput.style.border = "1px solid #0485ff";
-  mp3Btn.style.background = "#0485ff";
-  mp3Btn.style.border = "2px solid #0485ff";
-  mp4Btn.style.display = "inline-block";
-
-  source = 'yt';
-
-  if (e.target.value == '') {
-    URLinput.style.border = "1px solid #FF0000";
+//These functions work for both link and search resutls.
+function downloadMp3(id){
+  if(!id.startsWith('http')){
+    id = URLinput.value;
   }
-  if((URLinput.value).startsWith('https://soundcloud.com/')){
-      URLinput.style.border = "1px solid #FF8C00";
-      mp3Btn.style.background = '#FF8C00';
-      mp3Btn.style.border = "2px solid #FF8C00";
-      mp4Btn.style.display = "none";
-
-      source = 'sc';
-  }
-
-  if((URLinput.value).startsWith('https://open.spotify.com/')){
-    URLinput.style.border = "1px solid #1DB954";
-    mp3Btn.style.background = '#1DB954';
-    mp3Btn.style.border = "2px solid #1DB954";
-    mp4Btn.style.display = "none";
-
-    source = 'sp'
-  }
-  
+  console.log('Downloading: '+id);
+  window.location.href = `http://localhost:3000/download/${source}/?URL=${id}`
 }
 
-mp3Btn.addEventListener("click", function(){
-  console.log(`URL:${URLinput.value}`);
-  window.location.href = `http://localhost:3000/download/${source}/?URL=${URLinput.value}`
-})
+function downloadMp4(id){
+  if(!id.startsWith('http')){
+    id = URLinput.value;
+  }
+  console.log('Downloading: '+id);
+  window.location.href = `http://localhost:3000/download/MP4?URL=${id}`
+}
 
 
-mp4Btn.addEventListener("click", function(){
-  inputQuery(URLinput.value);
+
+searchBtn.addEventListener("click", function(){
+    if(URLinput.value == ''){
+      alert('Please write something on the search bar first. :)');
+      return;
+    }
+
+    let request = new XMLHttpRequest();
+    let url = `http://localhost:3000/search/?Query=${URLinput.value}`;
+    
+    request.open('GET', url);
+    request.responseType = 'text';
+    request.onload = function() {
+      let info = request.response;
+      let json = JSON.parse(info);
+      removeResults();
+      addResults(json);
+    };
+    request.send();
+  })
+
+
+  function inputQuery(e){
+    URLinput.style.border = "1px solid #0485ff";
+    mp3Btn.style.background = "#cc0000";
+    mp3Btn.style.border = "2px solid #cc0000";
+    searchBtn.style.display = 'inline-flex';
+
+    mp3Btn.style.display = 'none';
+    mp4Btn.style.display = 'none';
   
-  console.log(`URL:${URLinput.value}`);
-  window.location.href = `http://localhost:3000/download/MP4?URL=${URLinput.value}`
-})
+    source = 'yt';
+  
+    if (URLinput.value == '') {
+      URLinput.style.border = "1px solid #FF0000";
+    }
+    if((URLinput.value).startsWith('https://soundcloud.com/')){
+        URLinput.style.border = "1px solid #FF8C00";
+        searchBtn.style.display = 'none';
+        mp3Btn.style.display = 'inline-flex';
+        
+        mp3Btn.style.background = '#FF8C00';
+        mp3Btn.style.border = "2px solid #FF8C00";
+        mp4Btn.style.display = "none";
+  
+        source = 'sc';
+    }
+  
+    if((URLinput.value).startsWith('https://open.spotify.com/')){
+      URLinput.style.border = "1px solid #1DB954";
+      searchBtn.style.display = 'none';
+      mp3Btn.style.display = 'inline-flex';
+
+      mp3Btn.style.background = '#1DB954';
+      mp3Btn.style.border = "2px solid #1DB954";
+      mp4Btn.style.display = "none";
+  
+      source = 'sp'
+    }
+
+    if((URLinput.value).startsWith('https://youtu') || (URLinput.value).startsWith('https://www.youtu')){
+      searchBtn.style.display = 'none';
+      mp3Btn.style.display = 'inline-flex';
+      mp4Btn.style.display = 'inline-flex';
+    }
+
+  }
+
+
+  function addResults(json){
+
+    if(json.items == undefined){
+      alert('Too many requests. Try again later. :(');
+      return;
+    }
+
+    var resultsDiv = document.querySelector('.resultsArea');
+    var item = document.querySelector('.results-item');
+    for(var i = 0;i<json.items.length;i++){
+
+      if(json.items[i].id.kind == 'youtube#video'){
+        var clone = item.cloneNode(true);
+        //add image
+        clone.childNodes[1].childNodes[1].src = json.items[i].snippet.thumbnails.high.url;
+        //add title
+        clone.childNodes[3].childNodes[1].innerHTML = json.items[i].snippet.title;
+        //add youtube videoID to the buttons
+        clone.childNodes[3].childNodes[3].id = 'https://youtube.com/watch?v=' + json.items[i].id.videoId;
+        clone.childNodes[3].childNodes[5].id = 'https://youtube.com/watch?v=' + json.items[i].id.videoId;
+        
+        resultsDiv.appendChild(clone);
+      }
+    }
+    
+    console.log('Finished showing results');
+
+  }
+
+  function removeResults(){
+    var results = document.querySelectorAll('.results-item');
+    if(results.length == 1){
+      return;
+    }else{
+      for (let i = 1; i < results.length; i++) {
+        results[i].remove();
+      }
+    }
+
+    console.log('Finished deleting results')
+  }
+
+

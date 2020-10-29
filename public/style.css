@@ -3,58 +3,138 @@
   padding: 0;
   box-sizing: border-box;
   text-align: center;
+  color: white;
 }
 
+
 body{
-  background-color: #0c1627;
+  background-color:#202020;
 }
+
+footer{
+  position: relative;
+  bottom: 0;
+  right: 50%;
+  transform: translate(50%, -50%);
+  height: 2.5rem;
+  width: 100%;
+  color: #717171;
+  font-family: 'Roboto',Arial,sans-serif;
+}
+
+
+.container{
+  width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.searchArea, .resultsArea{
+  padding: 5vh 0 5vh 0;
+}
+
+
 
 
 .heading{
   font-family: Arial;
-  margin-top: 30vh;
   margin-bottom: 20px;
-  color: white;
+  font-size: 50px;
 }
 
-.URL-input, .mp3-button, .mp4-button{
+.URL-input, .button{
   font-size: 1.3rem;
   padding: 5px 10px;
+  outline: none;
 }
 
 .URL-input{
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px 4px 4px 4px;
   width: 30rem;
   text-align: left;
-  border: 2px solid #eee;
   background: #eee;
   outline: none;
-
+  background-color: #121212;
+  border: none;
 }
 
 .URL-input:focus{
-  border: 2px solid #0485ff;
+  border: 2px solid #323232;
 }
 
-.mp3-button, .mp4-button{
+.button{
   cursor: pointer;
   border-radius: 4px 4px 4px 4px;
-  border: 2px solid #0485ff;
-  background: #0485ff;
-  color: white;
+  border: 2px solid #cc0000;
+  background:  #cc0000;
   margin: 10px 0px 0px 5px;
 }
 
-.mp4-portion{
-  display: inline;
+#search-button{
+  background:#323232;
+  border: 2px solid #323232;
+  color: #6f6f6f;
 }
+
+
+.results-info{
+  margin: auto;
+  padding: 5px 0 0 10px;
+}
+
+.results-info h1{
+  font-weight: normal;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+
+.results-item{
+  padding: 5vh 0 5vh 0 5vh;
+  margin: 0 0 20px 0;
+  width: 100%;
+}
+
+.results-item:nth-child(1){
+  display: none;
+}
+
+.results-img {
+  display:inline-flex;
+  
+}
+
 
 
 @media screen and (min-width: 300px){
 	.URL-input{
-    width: 17rem;
-    margin: 0 20px;
+    width: 100%;
+    font-size: 17px;
+    height: 50px;
   }
+  #search-button{
+    font-size: 20px;
+  }
+  .heading{
+    font-size: 30px;
+    margin-top: 20vh;
+  }
+
+
+  .results-img img{
+    width: 100%;
+  }
+
+
+  .results-info h1{
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .button{
+    font-size: 1rem;
+  }
+  
 }
 
 
@@ -62,8 +142,53 @@ body{
 	.URL-input{
     width: 25rem;
     margin: 0 20px;
+    font-size: 20px;
+    height: initial;
   }
+
+  .heading{
+    margin-top: initial;
+  }
+
+  .results-info h1{
+    font-size: 28px;
+    margin-top: initial;
+  }
+
+  .button{
+    font-size: initial;
+  }
+
+  .results-item{
+  display: inline-flex;
+  }
+
+  .results-img img{
+    width: 200px;
+  }
+
+
 }
+
+@media screen and (min-width: 980px){
+	.URL-input{
+    width: 50rem;
+    margin: 0 10px;
+    font-size: 25px;
+  }
+
+  .button{
+    font-size: 25px;
+  }
+
+.results-img img{
+  width: 300px;
+}
+
+
+}
+
+
 
 
 
