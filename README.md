@@ -6,7 +6,7 @@
 # Changelog:
 - v1.0 - Create project. Basic audio/video download functionality
 - v1.1 - SoundCloud Download Functionality
-- v2.0 - Design Overhaul. Youtube Search Functionality 
+- v1.2 - Design Overhaul. Youtube Search Functionality 
 
 ---
 
