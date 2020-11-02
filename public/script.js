@@ -46,7 +46,7 @@ searchBtn.addEventListener("click", function(){
     }
 
     let request = new XMLHttpRequest();
-    let url = `http://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
+    let url = `https://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
     
     request.open('GET', url);
     request.responseType = 'text';
