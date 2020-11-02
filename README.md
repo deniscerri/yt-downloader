@@ -16,8 +16,7 @@
 - Search anything on the URL Bar. Click Search. Press audio or mp4 on any result.
 
 # Link:
-[Click Here!](https://ytdl.deniscerri.repl.co/)
-This is a repl link. Ffmpeg doesn't work there so for now mp4's won't have the highest quality possible. Audios are fine on the other hand.
+[Click Here!](http://denisytdl.herokuapp.com/)
 
 ---
 # ToDo:
