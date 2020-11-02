@@ -108,8 +108,12 @@ fs.readdir(__dirname, (err, files) =>{
           proc.stderr.setEncoding("utf8")
           proc.stderr.on('data', function(data) {
               console.log(data);
-              ext = 'm4a'
+              
           });
+        
+          proc.on('error', function() {
+            ext = 'm4a'
+          })
           
           proc.on('close', function() {
             fs.unlinkSync(__dirname + `/${title}.m4a`)
