@@ -35,7 +35,7 @@ let YoutubeAPIKey = process.env.YoutubeAPIKey;
 app.get('/search', (req,res)=>{
 
     var Query = req.query.Query;
-    let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${Query}&maxResults=5&regionCode=US&key=${YoutubeAPIKey}`
+    let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${Query}&maxResults=25&regionCode=US&key=${YoutubeAPIKey}`
     let list
     fetch(url, settings)
     .then(res => res.json())
