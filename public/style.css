@@ -101,7 +101,21 @@ footer{
 
 .results-img {
   display:inline-flex;
-  
+  position: relative;
+}
+
+
+#length{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 3px 4px;
+  margin: 4px;
+  background: black;
+
+  font-size: 12px;
+  font-family: 'Roboto', Arial, sans-serif;
+  border-radius: 2px;
 }
 
 

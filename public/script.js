@@ -106,8 +106,9 @@ searchBtn.addEventListener("click", function(){
 
   }
 
-
   function addResults(json){
+
+    json = fixTimeStamps(json);
 
     if(json.items == undefined){
       alert('Too many requests. Try again later. :(');
@@ -120,8 +121,9 @@ searchBtn.addEventListener("click", function(){
 
       if(json.items[i].id.kind == 'youtube#video'){
         var clone = item.cloneNode(true);
-        //add image
+        //add image and length
         clone.childNodes[1].childNodes[1].src = json.items[i].snippet.thumbnails.high.url;
+        clone.childNodes[1].childNodes[3].innerHTML = json.items[i].id.length;
         //add title
         clone.childNodes[3].childNodes[1].innerHTML = json.items[i].snippet.title;
         //add youtube videoID to the buttons
@@ -134,6 +136,44 @@ searchBtn.addEventListener("click", function(){
     
     console.log('Finished showing results');
 
+  }
+
+
+  function fixTimeStamps(json){
+    let clone;
+    let tmp;
+   
+    for(i in json.items){
+
+      //REMOVE PT and S from timestamp
+      tmp = json.items[i].id.length;
+      tmp = tmp.substring(2, tmp.length-1)
+      //REMOVE hours and minutes tags
+      tmp = tmp.replace(/[\H\M]/g,':')
+      //putting element in array to fix bad formatted seconds or minutes, if they are single digit
+      let arr = tmp.split(':');
+
+      for(j in arr){
+        if(arr[j]<10){
+          arr[j] = '0'+arr[j];
+        }
+      }
+
+      //turning the array back to string and replacing commas back to :
+      tmp = arr.toString();
+      tmp = tmp.replace(/[\,]/g,':')
+
+      //if array element has value 0, probably because timestamp wasnt extracted in the first place
+      //we put empty value so we dont show it at all
+      if(tmp == 0){
+        tmp = ''
+      }
+
+      json.items[i].id.length = tmp;
+    }
+
+    clone = json;
+    return clone;
   }
 
   function removeResults(){

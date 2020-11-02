@@ -13,7 +13,9 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ffmpeg": "0.0.4",
+    "node-fetch": "^2.6.1",
+    "soundcloud-downloader": "^0.1.8",
     "youtube-dl": "^3.0.2",
-    "ytdl-core": "^3.4.1"
+    "ytdl-core": "^4.0.2"
   }
 }

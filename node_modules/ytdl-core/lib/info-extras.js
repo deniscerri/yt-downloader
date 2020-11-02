@@ -1,4 +1,4 @@
-const util = require('./util');
+const utils = require('./utils');
 const qs = require('querystring');
 const urllib = require('url');
 const parseTime = require('m3u8stream/dist/parse-time');
@@ -58,9 +58,6 @@ exports.getMedia = info => {
           media[`${type}_url`] = urllib.resolve(VIDEO_URL,
             meta.endpoint.commandMetadata.webCommandMetadata.url);
           media.thumbnails = meta.thumbnail.thumbnails;
-          // TODO: Added for backwards compatibility. Remove later.
-          util.deprecate(media, 'image', urllib.resolve(VIDEO_URL, media.thumbnails[0].url),
-            'info.videoDetails.media.image', 'info.videoDetails.media.thumbnails');
         }
         let topic = contents
           .filter(meta => meta.richMetadataRenderer.style === 'RICH_METADATA_RENDERER_STYLE_TOPIC');
@@ -96,7 +93,7 @@ exports.getAuthor = info => {
     let videoOwnerRenderer = v.videoSecondaryInfoRenderer.owner.videoOwnerRenderer;
     channelId = videoOwnerRenderer.navigationEndpoint.browseEndpoint.browseId;
     avatar = urllib.resolve(VIDEO_URL, videoOwnerRenderer.thumbnail.thumbnails[0].url);
-    subscriberCount = util.parseAbbreviatedNumber(
+    subscriberCount = utils.parseAbbreviatedNumber(
       videoOwnerRenderer.subscriberCountText.runs[0].text);
     verified = !!videoOwnerRenderer.badges.find(b => b.metadataBadgeRenderer.tooltip === 'Verified');
   } catch (err) {
@@ -175,23 +172,37 @@ exports.getRelatedVideos = info => {
 /**
  * Get like count.
  *
- * @param {string} body
- * @return {number}
+ * @param {string} info
+ * @returns {number}
  */
-const getLikesRegex = /"label":"([\d,]+?) likes"/;
-exports.getLikes = body => {
-  const likes = body.match(getLikesRegex);
-  return likes ? parseInt(likes[1].replace(/,/g, '')) : null;
+exports.getLikes = info => {
+  try {
+    let contents = info.response.contents.twoColumnWatchNextResults.results.results.contents;
+    let video = contents.find(r => r.videoPrimaryInfoRenderer);
+    let buttons = video.videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons;
+    let like = buttons.find(b => b.toggleButtonRenderer &&
+      b.toggleButtonRenderer.defaultIcon.iconType === 'LIKE');
+    return parseInt(like.toggleButtonRenderer.defaultText.accessibility.accessibilityData.label.replace(/\D+/g, ''));
+  } catch (err) {
+    return null;
+  }
 };
 
 /**
  * Get dislike count.
  *
- * @param {string} body
- * @return {number}
+ * @param {string} info
+ * @returns {number}
  */
-const getDislikesRegex = /"label":"([\d,]+?) dislikes"/;
-exports.getDislikes = body => {
-  const dislikes = body.match(getDislikesRegex);
-  return dislikes ? parseInt(dislikes[1].replace(/,/g, '')) : null;
+exports.getDislikes = info => {
+  try {
+    let contents = info.response.contents.twoColumnWatchNextResults.results.results.contents;
+    let video = contents.find(r => r.videoPrimaryInfoRenderer);
+    let buttons = video.videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons;
+    let dislike = buttons.find(b => b.toggleButtonRenderer &&
+      b.toggleButtonRenderer.defaultIcon.iconType === 'DISLIKE');
+    return parseInt(dislike.toggleButtonRenderer.defaultText.accessibility.accessibilityData.label.replace(/\D+/g, ''));
+  } catch (err) {
+    return null;
+  }
 };
