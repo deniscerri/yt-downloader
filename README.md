@@ -1,5 +1,5 @@
 <p align="middle">
-  # <img src="./public/logos/yt.png" width="100"/>
+  <img src="./public/logos/yt.png" width="100"/>
   <img src="./public/logos/sc.png" width="100" /> 
 </p>
 
