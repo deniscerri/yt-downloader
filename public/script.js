@@ -26,7 +26,7 @@ function downloadMp3(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  window.location.href = `http://denisytdl.herokuapp.com/download/${source}/?URL=${id}`
+  window.location.href = `http://localhost:3000/download/${source}/?URL=${id}`
 }
 
 function downloadMp4(id){
@@ -34,7 +34,7 @@ function downloadMp4(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  window.location.href = `http://denisytdl.herokuapp.com/download/MP4?URL=${id}`
+  window.location.href = `http://localhost:3000/download/MP4?URL=${id}`
 }
 
 
@@ -46,7 +46,7 @@ searchBtn.addEventListener("click", function(){
     }
 
     let request = new XMLHttpRequest();
-    let url = `https://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
+    let url = `http://localhost:3000/search/?Query=${URLinput.value}`;
     
     request.open('GET', url);
     request.responseType = 'text';
@@ -68,7 +68,11 @@ searchBtn.addEventListener("click", function(){
 
     mp3Btn.style.display = 'none';
     mp4Btn.style.display = 'none';
-  
+
+    document.querySelectorAll('div[class="headerImages"] > img')[0].style.display = 'none';
+    document.querySelectorAll('div[class="headerImages"] > img')[1].style.display = 'none';
+    document.querySelectorAll('div[class="headerImages"] > img')[2].style.display = 'none';
+
     source = 'yt';
   
     if (URLinput.value == '') {
@@ -82,7 +86,8 @@ searchBtn.addEventListener("click", function(){
         mp3Btn.style.background = '#FF8C00';
         mp3Btn.style.border = "2px solid #FF8C00";
         mp4Btn.style.display = "none";
-  
+
+        document.querySelectorAll('div[class="headerImages"] > img')[0].style.display = 'block';
         source = 'sc';
     }
   
@@ -94,7 +99,9 @@ searchBtn.addEventListener("click", function(){
       mp3Btn.style.background = '#1DB954';
       mp3Btn.style.border = "2px solid #1DB954";
       mp4Btn.style.display = "none";
-  
+
+
+      document.querySelectorAll('div[class="headerImages"] > img')[2].style.display = 'block';
       source = 'sp'
     }
 
@@ -102,6 +109,9 @@ searchBtn.addEventListener("click", function(){
       searchBtn.style.display = 'none';
       mp3Btn.style.display = 'inline-flex';
       mp4Btn.style.display = 'inline-flex';
+
+      document.querySelectorAll('div[class="headerImages"] > img')[1].style.display = 'block';
+
     }
 
   }

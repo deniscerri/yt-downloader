@@ -8,7 +8,7 @@
 
 
 body{
-  background-color:#202020;
+  background-color: #282828;
 }
 
 footer{
@@ -34,13 +34,25 @@ footer{
   padding: 5vh 0 5vh 0;
 }
 
-
-
-
 .heading{
   font-family: Arial;
   margin-bottom: 20px;
   font-size: 50px;
+}
+
+.headerImages img{
+  width: 100%;
+  padding: 15px;
+  display: none;
+}
+
+
+.headerImages{
+  display: inline-flex;
+  position: relative;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
 }
 
 .URL-input, .button{
@@ -134,6 +146,9 @@ footer{
     margin-top: 20vh;
   }
 
+  .headerImages{
+    width: 200px;
+  }
 
   .results-img img{
     width: 100%;
@@ -181,6 +196,8 @@ footer{
     width: 200px;
   }
 
+ 
+
 
 }
 
@@ -199,6 +216,9 @@ footer{
   width: 300px;
 }
 
+.headerImages{
+  width: 300px;
+}
 
 }
 
