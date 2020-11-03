@@ -1,5 +1,5 @@
 <p float="left">
-  <img src="./public/logos/yt.png" width="100" />
+  <img src="./public/logos/yt.png" width="100" style='background: black'/>
   <img src="./public/logos/sc.png" width="100" /> 
 </p>
 
@@ -27,6 +27,7 @@
 ### ToDo:
 - [x] soundloud support
 - [x] search function
+- [ ] spotify function
 - [ ] playlist support
 - [ ] select quality
 - [ ] add download progress in interface
