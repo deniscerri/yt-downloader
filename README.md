@@ -1,5 +1,5 @@
 <p float="left">
-  <img src="./public/logos/yt.png" width="100" style='background: black'/>
+  <img src="./public/logos/yt.png" width="100" style="background: black"/>
   <img src="./public/logos/sc.png" width="100" /> 
 </p>
 
