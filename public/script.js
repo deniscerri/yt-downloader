@@ -26,7 +26,7 @@ function downloadMp3(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  window.location.href = `http://localhost:3000/download/${source}/?URL=${id}`
+  window.location.href = `http://denisytdl.herokuapp.com/download/${source}/?URL=${id}`
 }
 
 function downloadMp4(id){
@@ -34,7 +34,7 @@ function downloadMp4(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  window.location.href = `http://localhost:3000/download/MP4?URL=${id}`
+  window.location.href = `http://denisytdl.herokuapp.com/download/MP4?URL=${id}`
 }
 
 
@@ -46,7 +46,7 @@ searchBtn.addEventListener("click", function(){
     }
 
     let request = new XMLHttpRequest();
-    let url = `http://localhost:3000/search/?Query=${URLinput.value}`;
+    let url = `http://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
     
     request.open('GET', url);
     request.responseType = 'text';
