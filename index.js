@@ -111,7 +111,8 @@ fs.readdir(__dirname, (err, files) =>{
               
           });
         
-          proc.on('error', function() {
+          proc.on('error', function(err) {
+            console.log('Error: '+err);
             ext = 'm4a'
           })
           
@@ -220,11 +221,15 @@ fs.readdir(__dirname, (err, files) =>{
           proc.stderr.setEncoding("utf8")
           proc.stderr.on('data', function(data) {
               console.log(data);
-              console.log('Error on merging. Sending SD quality video')
+          });
+        
+          proc.on('error', function(err){
+            console.log('Error: '+err);
+            console.log('Error on merging. Sending SD quality video')
               ytdl(URL, {
                 quality: 'highest',
               }).pipe(res);
-          });
+          })
           
           proc.on('close', function() {
             fs.unlinkSync(__dirname + `/${title}.m4a`)
