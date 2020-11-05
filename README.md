@@ -21,7 +21,7 @@
 - Search anything on the URL Bar. Click Search. Press audio or mp4 on any result.
 
 ## Link:
-[Click Here!](http://denisytdl.herokuapp.com/)
+[Click Here!](http://denisytdl.herokuapp.com/) [Or Here!](http://ytdl.deniscerri.repl.co/)
 
 ---
 ### ToDo:
