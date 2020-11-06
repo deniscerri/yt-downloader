@@ -23,8 +23,8 @@
     Ex:      'https://www.youtube.com/watch?v=ois7lx1gsXw?list=PLKudU8kzJg7JIFglSp8T90Wv9Amf4MGuN'
     
     Turn it to: https://www.youtube.com/watch?v=ois7lx1gsXw
-- Spotify link
-    - Put the spotify song link and press mp3.
+- SoundCloud link
+    - Put the soundcloud song link and press mp3.
 - Youtube Search and Youtube Playlists
     - If you search for certain videos or put a supported playlist link, video results will be listed for you to download
 
