@@ -1,6 +1,3 @@
-var main = document.querySelector('.main');
-var loader = document.querySelector('.loader');
-
 var mp3Btn = document.querySelector('#mp3-button');
 mp3Btn.style.display = 'none';
 
@@ -74,27 +71,7 @@ function downloadMp3(id){
   }
   console.log('Downloading: '+id);
   let link = `https://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
-  
-  //show loading screen
-  loading(true);
-  var xhr = new XMLHttpRequest();
-    xhr.open('GET', link);
-    xhr.responseType = 'blob';
-    xhr.onload = function() {
-        //Sending file to user
-        var blob = this.response;
-        var contentDispo = this.getResponseHeader('Content-Disposition');
-        var fileName = contentDispo.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1];
-        fileName = fileName.slice(1, -1);
-
-        sendFile(blob, fileName)
-        //remove loading screen
-        loading(false);
-    }
-  xhr.send();
-  
-
-
+  window.location.href = link;
 }
 
 function downloadMp4(id){
@@ -103,24 +80,7 @@ function downloadMp4(id){
   }
   console.log('Downloading: '+id);
   let link = `https://denisytdl.herokuapp.com/download/MP4?URL=${id}`
-
-  //show loading screen
-  loading(true);
-  var xhr = new XMLHttpRequest();
-    xhr.open('GET', link);
-    xhr.responseType = 'blob';
-    xhr.onload = function() {
-        //Sending file to user
-        var blob = this.response;
-        var contentDispo = this.getResponseHeader('Content-Disposition');
-        var fileName = contentDispo.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/)[1];
-        fileName = fileName.slice(1, -1);
-
-        sendFile(blob, fileName)
-        //remove loading screen
-        loading(false);
-    }
-  xhr.send();
+  window.location.href = link;
 }
 
 function inputQuery(e){
@@ -297,24 +257,6 @@ function getPLaylistID(link){
       return parts[i].substring(5);
     }
   }
-}
-
-function sendFile(blob, fileName){
-  var a = document.createElement('a');
-  a.href = window.URL.createObjectURL(blob);
-  a.download = fileName;
-  a.dispatchEvent(new MouseEvent('click'));
-}
-
-function loading(c){
-  if(c){
-    loader.style.display = 'block';
-    main.style.display = 'none';
-  }else{
-    loader.style.display = 'none';
-    main.style.display = 'block';
-  }
-  
 }
 
 

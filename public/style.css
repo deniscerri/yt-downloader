@@ -30,65 +30,6 @@ footer{
 	padding: 0 15px;
 }
 
-.loader {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  zoom: 1;
-  background-image: url(https://thumbs.gfycat.com/UnluckyVastIrishdraughthorse-size_restricted.gif);
-  background-size: 70vw;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: black;
-}
-
-
-.loader h1{
-  margin: 10vh 0 20px 0;
-}
-
-
-.circular {
- animation: rotate 1s linear infinite;
- height: 70px;
- position: relative;
- width: 70px;
-}
-
-
-.path {
-  stroke: gray;
-  stroke-dasharray: 1,200;
-  stroke-dashoffset: 0;
-  animation: dash 1.5s ease-in-out infinite;
-  stroke-linecap: round;
-}
-
-@keyframes rotate {
- 100%{
-  transform: rotate(360deg);
- }
-}
-@keyframes dash{
- 0%{
-  stroke-dasharray: 1,200;
-  stroke-dashoffset: 0;
- }
- 50%{
-  stroke-dasharray: 89,200;
-  stroke-dashoffset: -35;
- }
- 100%{
-  stroke-dasharray: 89,200;
-  stroke-dashoffset: -124;
- }
-}
-
 .searchArea, .resultsArea{
   padding: 5vh 0 5vh 0;
 }
@@ -218,9 +159,6 @@ footer{
 
 
 @media screen and (min-width: 600px){
-  .loader{
-    background-size: 30vw;
-  }
 	.URL-input{
     width: 25rem;
     margin: 0 20px;
