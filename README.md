@@ -1,6 +1,11 @@
+<p align="middle">
+  <img src="https://cdn.mos.cms.futurecdn.net/SytNGv3ZxAVCkvcspmbbvh.jpg" width="100"/>
+  <img src="./public/logos/sc.png" width="100" /> 
+</p>
+
 # Youtube / SoundCloud Converter
 
-**Convert any video on youtube to an audio or mp4 format in their highest quality possible. Also Download SoundCloud songs too :)**
+**Convert any video on youtube to mp3 or mp4 format in their highest quality possible. Also Download SoundCloud songs too :)**
 
 ---
 ## Changelog:
@@ -23,7 +28,7 @@
 
 
 ## Link:
-[Click Here!](http://denisytdl.herokuapp.com/)
+[Click Here!](http://denisytdl.herokuapp.com/) [Or Here!](http://ytdl.deniscerri.repl.co/)
 
 ---
 ### ToDo:
