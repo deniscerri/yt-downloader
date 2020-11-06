@@ -19,8 +19,8 @@
 - Youtube link
     - If you have normal video link, paste it and press mp3 or mp4. If you want to download playlist videos make sure its a costum playlist and not a YouTube Mix one. Those playlists are costumised for your account and they will show random results in the page. 
     If you want to download the first song from that playlist, remove the playlist portion:
-    Ex:      'https://youtube.com/watch?=ois7lx1gsXw?list=PLKudU8kzJg7JIFglSp8T90Wv9Amf4MGuN'
     
+    Ex:      'https://youtube.com/watch?=ois7lx1gsXw?list=PLKudU8kzJg7JIFglSp8T90Wv9Amf4MGuN'
     
     Turns to: https://youtube.com/watch?=ois7lx1gsXw
 - Spotify link
