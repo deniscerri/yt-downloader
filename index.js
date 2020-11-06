@@ -4,8 +4,8 @@ const cors = require('cors');
 const app = express();
 var root = __dirname
 
-app.listen(3000, () =>{
-  console.log('Server is working at port: 3000');
+app.listen(process.env.PORT, () =>{
+  console.log('Server is working');
 });
 
 app.use(cors());
