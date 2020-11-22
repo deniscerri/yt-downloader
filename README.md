@@ -5,14 +5,14 @@
 
 # Youtube / SoundCloud Converter
 
-**Convert any video on youtube to mp3 or mp4 format in their highest quality possible. Also Download SoundCloud songs too :)**
+**Convert any video, playlist on youtube to mp3 or mp4 format in their highest quality possible. Also Download SoundCloud songs too :)**
 
 ---
 ## Changelog:
 - v1.0 - Create project. Basic audio/video download functionality
 - v1.1 - SoundCloud Download Functionality
 - v1.2 - Design Change. Youtube Search Functionality 
-- v1.3 - Playlist support. Converting screen
+- v1.3 - Playlist support.
 ---
 
 ## How to use:
