@@ -30,18 +30,43 @@ footer{
 	padding: 0 15px;
 }
 
-.searchArea, .resultsArea{
+.searchArea{
+  margin-top: 5px;
+}
+
+.searchArea img{
+  width: 100px;
+}
+
+.resultsArea{
   padding: 5vh 0 5vh 0;
 }
 
-.headerImages img{
+.result-details{
+  margin-top: 5px;
+}
+
+.result-details p{
+  text-align: left;
+  overflow: hidden;
+  font-size: 14px;
+  color: #AAAAAA;
+}
+
+#views{
+  float: left;
+  padding-right: 5px;
+}
+
+
+.headerImage img{
   width: 100%;
   padding: 15px;
   display: none;
 }
 
 
-.headerImages{
+.headerImage{
   display: inline-flex;
   position: relative;
   width: 300px;
@@ -84,7 +109,7 @@ footer{
 }
 
 .results-info{
-  margin: auto;
+  margin: 0;
   padding: 5px 0 0 10px;
 }
 
@@ -123,8 +148,8 @@ footer{
 
 
 
-@media screen and (min-width: 300px){
-  .headerImages{
+@media screen and (min-width: 200px){
+  .headerImage{
     margin-top: 20vh;
   }
 	.URL-input{
@@ -137,7 +162,7 @@ footer{
   }
 
 
-  .headerImages{
+  .headerImage{
     width: 200px;
   }
 
@@ -149,6 +174,7 @@ footer{
   .results-info h1{
     font-size: 14px;
     margin-top: 5px;
+    text-align: left;
   }
 
   .button{
@@ -159,36 +185,50 @@ footer{
 
 
 @media screen and (min-width: 600px){
+  .loader{
+    background-size: 30vw;
+  }
 	.URL-input{
     width: 25rem;
     margin: 0 20px;
     font-size: 20px;
     height: initial;
   }
-  .results-info h1{
-    font-size: 28px;
-    margin-top: initial;
+
+  .results-info{
+    padding-left: 15px;
   }
 
+  .results-info h1{
+    font-size: 18px;
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .results-info p:nth-child(2), .results-info p:nth-child(3){
+    margin-top: 10px;
+  }
+
+  
   .button{
     font-size: initial;
+    position: relative;
+    float: left;
+  }
+
+  #search-button{
+    float: initial;
   }
 
   .results-item{
-  display: inline-flex;
+    display: inline-flex;
+    padding: 3px;
   }
-
-  .results-img img{
-    width: 200px;
-  }
-
- 
-
 
 }
 
 @media screen and (min-width: 980px){
-  .headerImages{
+  .headerImage{
     margin-top: initial;
   }
 	.URL-input{
@@ -198,14 +238,10 @@ footer{
   }
 
   .button{
-    font-size: 25px;
+    font-size: 20px;
   }
 
-.results-img img{
-  width: 300px;
-}
-
-.headerImages{
+.headerImage{
   width: 300px;
 }
 

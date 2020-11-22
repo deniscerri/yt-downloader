@@ -1,3 +1,6 @@
+var main = document.querySelector('.main');
+var loader = document.querySelector('.loader');
+
 var mp3Btn = document.querySelector('#mp3-button');
 mp3Btn.style.display = 'none';
 
@@ -9,39 +12,46 @@ playlistBtn.style.display = 'none';
 
 var URLinput = document.querySelector('.URL-input');
 var searchBtn = document.querySelector('#search-button')
+var headerImg = document.querySelector('div[class="headerImage"] > img');
 
 window.addEventListener("pageshow", () => {
   URLinput.value = "";
+  URLinput.focus();
 });
 
 var source = 'yt';
 
 URLinput.addEventListener('input', inputQuery)
-
-//Event Listeners is you enter youtube link.
 mp3Btn.addEventListener("click", function(){downloadMp3(this.id)})
 mp4Btn.addEventListener("click", function(){downloadMp4(this.id)})
-
 searchBtn.addEventListener("click", function(){
-    if(URLinput.value == ''){
-      alert('Please write something on the search bar first. :)');
-      return;
+  if(URLinput.value == ''){
+    alert('Please write something on the search bar first. :)');
+    return;
+  }
+
+  let request = new XMLHttpRequest();
+  let url = `http://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
+  
+  request.open('GET', url);
+  request.responseType = 'text';
+  request.onload = function() {
+    let info = request.response;
+    let json = JSON.parse(info);
+    removeResults();
+    addResults(json);
+  };
+  request.send();
+})
+URLinput.addEventListener("keypress", function(e){
+  if(e.keyCode === 13){
+    if(playlistBtn.style.display == 'none'){
+      searchBtn.click();
+    }else if(searchBtn.style.display == 'none'){
+      playlistBtn.click();
     }
-
-    let request = new XMLHttpRequest();
-    let url = `https://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
-    
-    request.open('GET', url);
-    request.responseType = 'text';
-    request.onload = function() {
-      let info = request.response;
-      let json = JSON.parse(info);
-      removeResults();
-      addResults(json);
-    };
-    request.send();
-  })
-
+  }
+})
 playlistBtn.addEventListener("click", function(){
   if(URLinput.value == ''){
     alert('Please write something on the search bar first. :)');
@@ -51,7 +61,7 @@ playlistBtn.addEventListener("click", function(){
   let playlistID = getPLaylistID(URLinput.value);
 
   let request = new XMLHttpRequest();
-  let url = `https://denisytdl.herokuapp.com/ytPlaylist/?id=${playlistID}`;
+  let url = `http://denisytdl.herokuapp.com/ytPlaylist/?id=${playlistID}`;
   
   request.open('GET', url);
   request.responseType = 'text';
@@ -70,8 +80,9 @@ function downloadMp3(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `https://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
+  let link = `http://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
   window.location.href = link;
+
 }
 
 function downloadMp4(id){
@@ -79,10 +90,11 @@ function downloadMp4(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `https://denisytdl.herokuapp.com/download/MP4?URL=${id}`
+  let link = `http://denisytdl.herokuapp.com/download/MP4?URL=${id}`
   window.location.href = link;
 }
 
+//Show correct style and buttons for the input given
 function inputQuery(e){
   let input = e.target;
 
@@ -95,9 +107,8 @@ function inputQuery(e){
   mp4Btn.style.display = 'none';
   playlistBtn.style.display = 'none';
 
-  document.querySelectorAll('div[class="headerImages"] > img')[0].style.display = 'none';
-  document.querySelectorAll('div[class="headerImages"] > img')[1].style.display = 'none';
-  document.querySelectorAll('div[class="headerImages"] > img')[2].style.display = 'none';
+  headerImg.src = '';
+  headerImg.style.display = 'none';
 
   source = 'yt';
 
@@ -120,7 +131,8 @@ function inputQuery(e){
       mp4Btn.style.display = "none";
 
       //we show the soundcloud logo
-      document.querySelectorAll('div[class="headerImages"] > img')[1].style.display = 'block';
+      headerImg.src='../logos/sc.png'
+      headerImg.style.display = 'block';
       source = 'sc';
   }
 
@@ -138,7 +150,8 @@ function inputQuery(e){
     mp4Btn.style.display = "none";
 
     //we show the spotify logo
-    document.querySelectorAll('div[class="headerImages"] > img')[2].style.display = 'block';
+    headerImg.src='../logos/sp.png'
+    headerImg.style.display = 'block';
     source = 'sp'
   }
 
@@ -157,14 +170,15 @@ function inputQuery(e){
     searchBtn.style.display = 'none';
 
     //we show the youtube logo
-    document.querySelectorAll('div[class="headerImages"] > img')[0].style.display = 'block';
+    headerImg.src='../logos/yt.png'
+    headerImg.style.display = 'block';
   }
 
 }
 
 function addResults(json){
 
-  json = fixTimeStamps(json);
+  json = fixElements(json);
 
   if(json.error != undefined){
     alert(json.error.message);
@@ -178,18 +192,20 @@ function addResults(json){
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
       var clone = item.cloneNode(true);
       //add image and length
-      clone.childNodes[1].childNodes[1].src = json.items[i].snippet.thumbnails.high.url;
+      clone.childNodes[1].childNodes[1].src = `https://img.youtube.com/vi/${json.items[i].id.videoId}/mqdefault.jpg`;
       clone.childNodes[1].childNodes[3].innerHTML = json.items[i].snippet.length;
-      //add title
+      //add title,Channel name,Video Views and Release Date
       clone.childNodes[3].childNodes[1].innerHTML = json.items[i].snippet.title;
+      clone.childNodes[3].childNodes[3].childNodes[1].innerHTML = json.items[i].snippet.channelTitle;
+      clone.childNodes[3].childNodes[3].childNodes[3].innerHTML = json.items[i].snippet.views;
+      clone.childNodes[3].childNodes[3].childNodes[5].innerHTML = json.items[i].snippet.publishTime;
       //add youtube videoID to the buttons
-
       if(json.items[i].kind == 'youtube#playlistItem'){
-        clone.childNodes[3].childNodes[3].id = 'https://youtube.com/watch?v=' + json.items[i].snippet.resourceId.videoId;
         clone.childNodes[3].childNodes[5].id = 'https://youtube.com/watch?v=' + json.items[i].snippet.resourceId.videoId;
+        clone.childNodes[3].childNodes[7].id = 'https://youtube.com/watch?v=' + json.items[i].snippet.resourceId.videoId;
       }else{
-        clone.childNodes[3].childNodes[3].id = 'https://youtube.com/watch?v=' + json.items[i].id.videoId;
         clone.childNodes[3].childNodes[5].id = 'https://youtube.com/watch?v=' + json.items[i].id.videoId;
+        clone.childNodes[3].childNodes[7].id = 'https://youtube.com/watch?v=' + json.items[i].id.videoId;
       }
       
       resultsDiv.appendChild(clone);
@@ -200,41 +216,106 @@ function addResults(json){
 
 }
 
-function fixTimeStamps(json){
-  let clone;
-  let tmp;
-  
+function fixElements(json){
+//fix timestamp======================================================
   for(i in json.items){
+    if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
+      //REMOVE PT and S from timestamp
+      let tmp = json.items[i].snippet.length;
+      tmp = tmp.substring(2, tmp.length-1)
+      //REMOVE hours and minutes tags
+      tmp = tmp.replace(/[\H\M]/g,':')
+      //putting element in array to fix bad formatted seconds or minutes, if they are single digit
+      let arr = tmp.split(':');
 
-    //REMOVE PT and S from timestamp
-    tmp = json.items[i].snippet.length;
-    tmp = tmp.substring(2, tmp.length-1)
-    //REMOVE hours and minutes tags
-    tmp = tmp.replace(/[\H\M]/g,':')
-    //putting element in array to fix bad formatted seconds or minutes, if they are single digit
-    let arr = tmp.split(':');
-
-    for(j in arr){
-      if(arr[j]<10){
-        arr[j] = '0'+arr[j];
+      for(j in arr){
+        if(arr[j]<10){
+          arr[j] = '0'+arr[j];
+        }
       }
+
+      //turning the array back to string and replacing commas back to :
+      tmp = arr.toString();
+      tmp = tmp.replace(/[\,]/g,':')
+
+      //if array element has value 0, probably because timestamp wasnt extracted in the first place
+      //we put empty value so we dont show it at all
+      if(tmp == 0){
+        tmp = ''
+      }
+
+      json.items[i].snippet.length = tmp;
     }
-
-    //turning the array back to string and replacing commas back to :
-    tmp = arr.toString();
-    tmp = tmp.replace(/[\,]/g,':')
-
-    //if array element has value 0, probably because timestamp wasnt extracted in the first place
-    //we put empty value so we dont show it at all
-    if(tmp == 0){
-      tmp = ''
-    }
-
-    json.items[i].snippet.length = tmp;
   }
 
-  clone = json;
-  return clone;
+//fix view count=====================================================
+  for(i in json.items){
+    if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
+      let views = json.items[i].snippet.views;
+      if(views >= 1000000000){
+        views = Math.floor(views/1000000000) + 'B views';
+      }
+      if(views >= 1000000){
+        views = Math.floor(views/1000000) + 'M views';
+      }
+      if(views >= 1000){
+        views = Math.floor(views/1000) + 'K views';
+      }
+      if(views < 1000){
+        views = views + ' views';
+      }
+      json.items[i].snippet.views = views;
+    }
+  }
+
+//fix release date===================================================
+  for(i in json.items){
+    if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
+      let date = (json.items[i].snippet.publishTime).split('-');
+      let day = date[2].split('T');
+      date[2] = day[0];
+      console.log(date);
+      let videoDateInSeconds = new Date(`${date[0]}, ${date[1]}, ${date[2]}, 00:00`);
+      let currentDate = new Date();
+
+      var interval = Math.abs(currentDate - videoDateInSeconds) / 1000;
+      let tmpInterval = interval;
+      interval = interval / 31536000;
+      console.log(interval)
+
+      if (interval > 1) {
+        json.items[i].snippet.publishTime = Math.floor(interval) + " years ago";
+        continue;
+      }
+      interval = tmpInterval;
+      interval = interval / 2592000;
+      if (interval > 1) {
+        json.items[i].snippet.publishTime = Math.floor(interval) + " months ago";
+        continue;
+      }
+      interval = tmpInterval;
+      interval = interval / 86400;
+      if (interval > 1) {
+        json.items[i].snippet.publishTime = Math.floor(interval) + " days ago";
+        continue;
+      }
+      interval = tmpInterval;
+      interval = interval / 3600;
+      if (interval > 1) {
+        json.items[i].snippet.publishTime = Math.floor(interval) + " hours ago";
+        continue;
+      }
+      interval = tmpInterval;
+      interval = interval / 60;
+      if (interval > 1) {
+        json.items[i].snippet.publishTime = Math.floor(interval) + " minutes ago";
+        continue;
+      }
+      interval = tmpInterval;
+      json.items[i].snippet.publishTime = Math.floor(interval) + " seconds ago";
+    }
+  }
+  return json;
 }
 
 function removeResults(){
@@ -257,6 +338,24 @@ function getPLaylistID(link){
       return parts[i].substring(5);
     }
   }
+}
+
+function sendFile(blob, fileName){
+  var a = document.createElement('a');
+  a.href = window.URL.createObjectURL(blob);
+  a.download = fileName;
+  a.dispatchEvent(new MouseEvent('click'));
+}
+
+function loading(c){
+  if(c){
+    loader.style.display = 'block';
+    main.style.display = 'none';
+  }else{
+    loader.style.display = 'none';
+    main.style.display = 'block';
+  }
+  
 }
 
 
