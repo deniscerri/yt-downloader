@@ -112,6 +112,13 @@ footer{
   color: #6f6f6f;
 }
 
+.button:hover, .button:active, #search-button:active{
+  background:white;
+  color:black;
+  border: 2px solid white;
+  transition: .1s;
+}
+
 .results-info{
   margin: 0;
   padding: 5px 0 0 10px;
