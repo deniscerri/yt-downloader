@@ -38,6 +38,10 @@ footer{
   width: 100px;
 }
 
+.searchArea button{
+  float: initial;
+}
+
 .resultsArea{
   padding: 5vh 0 5vh 0;
 }
