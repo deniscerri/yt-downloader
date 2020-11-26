@@ -80,7 +80,7 @@ function downloadMp3(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `https://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
+  let link = `http://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
   window.location.href = link;
 
 }
@@ -90,7 +90,7 @@ function downloadMp4(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `https://denisytdl.herokuapp.com/download/MP4?URL=${id}`
+  let link = `http://denisytdl.herokuapp.com/download/MP4?URL=${id}`
   window.location.href = link;
 }
 
