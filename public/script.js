@@ -31,7 +31,7 @@ searchBtn.addEventListener("click", function(){
   }
 
   let request = new XMLHttpRequest();
-  let url = `http://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
+  let url = `https://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
   
   request.open('GET', url);
   request.responseType = 'text';
@@ -61,7 +61,7 @@ playlistBtn.addEventListener("click", function(){
   let playlistID = getPLaylistID(URLinput.value);
 
   let request = new XMLHttpRequest();
-  let url = `http://denisytdl.herokuapp.com/ytPlaylist/?id=${playlistID}`;
+  let url = `https://denisytdl.herokuapp.com/ytPlaylist/?id=${playlistID}`;
   
   request.open('GET', url);
   request.responseType = 'text';
@@ -80,7 +80,7 @@ function downloadMp3(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `http://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
+  let link = `https://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
   window.location.href = link;
 
 }
@@ -90,7 +90,7 @@ function downloadMp4(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `http://denisytdl.herokuapp.com/download/MP4?URL=${id}`
+  let link = `https://denisytdl.herokuapp.com/download/MP4?URL=${id}`
   window.location.href = link;
 }
 
@@ -345,17 +345,6 @@ function sendFile(blob, fileName){
   a.href = window.URL.createObjectURL(blob);
   a.download = fileName;
   a.dispatchEvent(new MouseEvent('click'));
-}
-
-function loading(c){
-  if(c){
-    loader.style.display = 'block';
-    main.style.display = 'none';
-  }else{
-    loader.style.display = 'none';
-    main.style.display = 'block';
-  }
-  
 }
 
 
