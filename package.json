@@ -16,6 +16,6 @@
     "node-fetch": "^2.6.1",
     "soundcloud-downloader": "^0.1.8",
     "youtube-dl": "^3.0.2",
-    "ytdl-core": "^4.0.3"
+    "ytdl-core": "^4.0.2"
   }
 }
