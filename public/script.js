@@ -220,33 +220,52 @@ function fixElements(json){
 //fix timestamp======================================================
   for(i in json.items){
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
-      //REMOVE PT and S from timestamp
+      //REMOVE PT from timestamp
       let tmp = json.items[i].snippet.length;
-      tmp = tmp.substring(2, tmp.length-1)
-      //REMOVE hours and minutes tags
-      tmp = tmp.replace(/[\H\M]/g,':')
-      //putting element in array to fix bad formatted seconds or minutes, if they are single digit
-      let arr = tmp.split(':');
+      tmp = tmp.substring(2, tmp.length)
+      //lets use a as a temporary variable to store number of hours/minutes/seconds
+      let a = '';
+      let timestamp = '';
+      let hours = '',minutes = '',seconds = '';
+      for (let i = 0; i < tmp.length; i++) {
+        if(tmp[i]== 'H' || tmp[i]== 'M' || tmp[i]== 'S' ){
+            if(parseInt(a) < 10){
+              a = '0' + a;
+            }
+            if(tmp[i] == 'H'){
+              hours = a;
+            }
+            if(tmp[i] == 'M'){
+              minutes = a;
+            }
+            if(tmp[i] == 'S'){
+              seconds = a;
+            }
+            a = '';
+            continue;
+        }
+        a +=tmp[i];
+      }
 
-      for(j in arr){
-        if(arr[j]<10){
-          arr[j] = '0'+arr[j];
+      console.log(hours+'>'+minutes+'>'+seconds);
+
+      if(hours != ''){
+        timestamp += hours + ':';
+      }
+      if(minutes != ''){
+        timestamp += minutes + ':';
+      //if minutes are 0 but the video is >= 1 hr, then we have to still show the minutes
+      }else{
+        if(hours != ''){
+          timestamp += '00:';
         }
       }
-
-      //turning the array back to string and replacing commas back to :
-      tmp = arr.toString();
-      tmp = tmp.replace(/[\,]/g,':')
-
-      //if array element has value 0, probably because timestamp wasnt extracted in the first place
-      //we put empty value so we dont show it at all
-      if(tmp == 0){
-        tmp = ''
-      }
-
-      json.items[i].snippet.length = tmp;
+      timestamp += seconds;
+      
+      json.items[i].snippet.length = timestamp;
     }
   }
+
 
 //fix view count=====================================================
   for(i in json.items){
