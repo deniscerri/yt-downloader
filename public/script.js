@@ -247,8 +247,6 @@ function fixElements(json){
         a +=tmp[i];
       }
 
-      console.log(hours+'>'+minutes+'>'+seconds);
-
       if(hours != ''){
         timestamp += hours + ':';
       }
@@ -293,14 +291,12 @@ function fixElements(json){
       let date = (json.items[i].snippet.publishTime).split('-');
       let day = date[2].split('T');
       date[2] = day[0];
-      console.log(date);
       let videoDateInSeconds = new Date(`${date[0]}, ${date[1]}, ${date[2]}, 00:00`);
       let currentDate = new Date();
 
       var interval = Math.abs(currentDate - videoDateInSeconds) / 1000;
       let tmpInterval = interval;
       interval = interval / 31536000;
-      console.log(interval)
 
       if (interval > 1) {
         json.items[i].snippet.publishTime = Math.floor(interval) + " years ago";
@@ -358,12 +354,4 @@ function getPLaylistID(link){
     }
   }
 }
-
-function sendFile(blob, fileName){
-  var a = document.createElement('a');
-  a.href = window.URL.createObjectURL(blob);
-  a.download = fileName;
-  a.dispatchEvent(new MouseEvent('click'));
-}
-
 
