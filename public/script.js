@@ -192,7 +192,7 @@ function addResults(json){
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
       var clone = item.cloneNode(true);
       //add image and length
-      clone.childNodes[1].childNodes[1].src = `https://img.youtube.com/vi/${json.items[i].id.videoId}/mqdefault.jpg`;
+      clone.childNodes[1].childNodes[1].src = json.items[i].snippet.thumbnails.medium.url;
       clone.childNodes[1].childNodes[3].innerHTML = json.items[i].snippet.length;
       //add title,Channel name,Video Views and Release Date
       clone.childNodes[3].childNodes[1].innerHTML = json.items[i].snippet.title;
@@ -288,7 +288,7 @@ function fixElements(json){
 //fix release date===================================================
   for(i in json.items){
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
-      let date = (json.items[i].snippet.publishTime).split('-');
+      let date = (json.items[i].snippet.publishedAt).split('-');
       let day = date[2].split('T');
       date[2] = day[0];
       let videoDateInSeconds = new Date(`${date[0]}, ${date[1]}, ${date[2]}, 00:00`);
