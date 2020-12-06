@@ -30,7 +30,7 @@
 
 
 ## Link:
-[Click Here!](http://denisytdl.herokuapp.com/) [Or Here!](http://ytdl.deniscerri.repl.co/)
+[Click Here!](http://denisytdl.herokuapp.com/)
 
 ---
 ### ToDo:
