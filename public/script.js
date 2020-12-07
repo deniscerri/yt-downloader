@@ -253,8 +253,12 @@ function fixElements(json){
       if(minutes != ''){
         timestamp += minutes + ':';
       //if minutes are 0 but the video is >= 1 hr, then we have to still show the minutes
+      //if the video is shorter than a minute, we still have to show the minutes as zeroes
       }else{
         if(hours != ''){
+          timestamp += '00:';
+        }
+        if(seconds != ''){
           timestamp += '00:';
         }
       }
