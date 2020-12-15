@@ -40,7 +40,6 @@ searchBtn.addEventListener("click", function(){
     let json = JSON.parse(info);
     removeResults();
     addResults(json);
-    headerImg.click();
   };
   request.send();
 })
@@ -71,7 +70,6 @@ playlistBtn.addEventListener("click", function(){
     let json = JSON.parse(info);
     removeResults();
     addResults(json);
-    headerImg.click();
   };
   request.send();
 })
