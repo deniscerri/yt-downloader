@@ -101,8 +101,8 @@ footer{
 .button{
   cursor: pointer;
   border-radius: 4px 4px 4px 4px;
-  border: 2px solid #cc0000;
-  background:  #cc0000;
+  border: 2px solid black;
+  background:  black;
   margin: 10px 0px 0px 5px;
 }
 
