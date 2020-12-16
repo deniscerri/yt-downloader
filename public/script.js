@@ -284,6 +284,7 @@ function fixElements(json){
           timestamp += '00:';
         }
       }
+      if(seconds == ''){seconds = '00'}
       timestamp += seconds;
       
       json.items[i].snippet.length = timestamp;
