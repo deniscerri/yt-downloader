@@ -87,19 +87,20 @@ function downloadMp3(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  // window.location.href = `${baseURL}/download/${source}/?URL=${id}`;
+  window.location.href = `${baseURL}/download/${source}/?URL=${id}`;
 
+  // TO IMPLEMENT LATER ==========================
   
-  let request = new XMLHttpRequest();
-  let url = `${baseURL}/download/${source}/?URL=${id}`;
+//   let request = new XMLHttpRequest();
+//   let url = `${baseURL}/download/${source}/?URL=${id}`;
   
-  request.open('GET', url);
-  request.responseType = 'text';
+//   request.open('GET', url);
+//   request.responseType = 'text';
   
-  request.onprogress = function(e){
-    console.log(e.loaded + "  "+ e.total);
-  }
-  request.send();
+//   request.onprogress = function(e){
+//     console.log(e.loaded + "  "+ e.total);
+//   }
+//   request.send();
 }
 
 function downloadMp4(id){
