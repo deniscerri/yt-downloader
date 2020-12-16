@@ -1,18 +1,23 @@
 var main = document.querySelector('.main');
-var loader = document.querySelector('.loader');
 
 var mp3Btn = document.querySelector('#mp3-button');
-mp3Btn.style.display = 'none';
-
 var mp4Btn = document.querySelector('#mp4-button');
-mp4Btn.style.display = 'none';
-
 var playlistBtn = document.querySelector('#playlist-button')
+
+mp3Btn.style.display = 'none';
+mp4Btn.style.display = 'none';
 playlistBtn.style.display = 'none';
 
 var URLinput = document.querySelector('.URL-input');
 var searchBtn = document.querySelector('#search-button')
 var headerImg = document.querySelector('div[class="headerImage"] > img');
+
+
+var baseURL = 'https://denisytdl.herokuapp.com';
+
+
+
+
 
 window.addEventListener("pageshow", () => {
   URLinput.value = "";
@@ -31,7 +36,7 @@ searchBtn.addEventListener("click", function(){
   }
 
   let request = new XMLHttpRequest();
-  let url = `https://denisytdl.herokuapp.com/search/?Query=${URLinput.value}`;
+  let url = `${baseURL}/search?Query=${URLinput.value}`;
   
   request.open('GET', url);
   request.responseType = 'text';
@@ -40,6 +45,7 @@ searchBtn.addEventListener("click", function(){
     let json = JSON.parse(info);
     removeResults();
     addResults(json);
+    headerImg.click();
   };
   request.send();
 })
@@ -61,7 +67,7 @@ playlistBtn.addEventListener("click", function(){
   let playlistID = getPLaylistID(URLinput.value);
 
   let request = new XMLHttpRequest();
-  let url = `https://denisytdl.herokuapp.com/ytPlaylist/?id=${playlistID}`;
+  let url = `${baseURL}/ytPlaylist/?id=${playlistID}`;
   
   request.open('GET', url);
   request.responseType = 'text';
@@ -70,6 +76,7 @@ playlistBtn.addEventListener("click", function(){
     let json = JSON.parse(info);
     removeResults();
     addResults(json);
+    headerImg.click();
   };
   request.send();
 })
@@ -80,9 +87,19 @@ function downloadMp3(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `https://denisytdl.herokuapp.com/download/${source}/?URL=${id}`;
-  window.location.href = link;
+  // window.location.href = `${baseURL}/download/${source}/?URL=${id}`;
 
+  
+  let request = new XMLHttpRequest();
+  let url = `${baseURL}/download/${source}/?URL=${id}`;
+  
+  request.open('GET', url);
+  request.responseType = 'text';
+  
+  request.onprogress = function(e){
+    console.log(e.loaded + "  "+ e.total);
+  }
+  request.send();
 }
 
 function downloadMp4(id){
@@ -90,23 +107,27 @@ function downloadMp4(id){
     id = URLinput.value;
   }
   console.log('Downloading: '+id);
-  let link = `https://denisytdl.herokuapp.com/download/MP4?URL=${id}`
-  window.location.href = link;
+  window.location.href = `${baseURL}/download/MP4?URL=${id}`
 }
 
 //Show correct style and buttons for the input given
 function inputQuery(e){
   let input = e.target;
 
+  //if we recieve input we remove the red border 
   input.style.border = "1px solid #0485ff";
-  mp3Btn.style.background = "#cc0000";
-  mp3Btn.style.border = "2px solid #cc0000";
+  mp3Btn.style.background = "#323232";
+  mp3Btn.style.border = "2px solid #323232";
+
+  //while we are writing we show the search button
   searchBtn.style.display = 'inline-flex';
 
+  //buttons are kept hidden unless you write out a link
   mp3Btn.style.display = 'none';
   mp4Btn.style.display = 'none';
   playlistBtn.style.display = 'none';
 
+  //header images are only shown if you insert a proper link
   headerImg.src = '';
   headerImg.style.display = 'none';
 
@@ -114,9 +135,8 @@ function inputQuery(e){
 
   //if we delete and input is empty we show red around the bar
   if (input.value == '') {
-    input.style.border = "1px solid #FF0000";
+    input.style.border = "2px solid #FF0000";
   }
-
   //if its a soundcloud link
   if((input.value).startsWith('https://soundcloud.com/')){
       //we give a soundcloud themed color around the search bar
@@ -135,7 +155,6 @@ function inputQuery(e){
       headerImg.style.display = 'block';
       source = 'sc';
   }
-
   //if its a spotify link
   if((input.value).startsWith('https://open.spotify.com/')){
     //we give a spotify themed color around the search bar
@@ -154,7 +173,6 @@ function inputQuery(e){
     headerImg.style.display = 'block';
     source = 'sp'
   }
-
   //if its a youtube link 
   if((input.value).startsWith('https://youtu') || (input.value).startsWith('https://www.youtu')){
     //if its a youtube playlist link we show the playlist button that lists the videos
@@ -217,6 +235,7 @@ function addResults(json){
 }
 
 function fixElements(json){
+  console.log(json.items);
 //fix timestamp======================================================
   for(i in json.items){
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
@@ -247,6 +266,8 @@ function fixElements(json){
         a +=tmp[i];
       }
 
+      console.log(hours+'>'+minutes+'>'+seconds);
+
       if(hours != ''){
         timestamp += hours + ':';
       }
@@ -267,7 +288,6 @@ function fixElements(json){
       json.items[i].snippet.length = timestamp;
     }
   }
-
 
 //fix view count=====================================================
   for(i in json.items){
@@ -292,15 +312,18 @@ function fixElements(json){
 //fix release date===================================================
   for(i in json.items){
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
+      console.log(json.items[i]);
       let date = (json.items[i].snippet.publishedAt).split('-');
       let day = date[2].split('T');
       date[2] = day[0];
+      console.log(date);
       let videoDateInSeconds = new Date(`${date[0]}, ${date[1]}, ${date[2]}, 00:00`);
       let currentDate = new Date();
 
       var interval = Math.abs(currentDate - videoDateInSeconds) / 1000;
       let tmpInterval = interval;
       interval = interval / 31536000;
+      console.log(interval)
 
       if (interval > 1) {
         json.items[i].snippet.publishTime = Math.floor(interval) + " years ago";
@@ -358,4 +381,3 @@ function getPLaylistID(link){
     }
   }
 }
-

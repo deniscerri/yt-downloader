@@ -9,7 +9,7 @@
 
 
 body{
-  background-color: #282828;
+  background-color:black;
 }
 
 footer{
@@ -85,7 +85,7 @@ footer{
 }
 
 .URL-input{
-  border-radius: 4px 4px 4px 4px;
+  border-radius: 10px;
   width: 30rem;
   text-align: left;
   background: #eee;
@@ -100,9 +100,9 @@ footer{
 
 .button{
   cursor: pointer;
-  border-radius: 4px 4px 4px 4px;
-  border: 2px solid black;
-  background:  black;
+  border-radius: 10px;
+  border: 2px solid #323232;
+  background:  #323232;
   margin: 10px 0px 0px 5px;
 }
 
@@ -144,6 +144,9 @@ footer{
   position: relative;
 }
 
+#results-img{
+  border-radius: 10px;
+}
 
 #length{
   position: absolute;
@@ -155,6 +158,11 @@ footer{
 
   font-size: 12px;
   border-radius: 2px;
+}
+
+
+#resultBtn{
+  width: 50px;
 }
 
 
@@ -196,9 +204,6 @@ footer{
 
 
 @media screen and (min-width: 600px){
-  .loader{
-    background-size: 30vw;
-  }
 	.URL-input{
     width: 25rem;
     margin: 0 20px;
