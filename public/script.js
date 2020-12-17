@@ -207,8 +207,8 @@ function addResults(json){
   var resultsDiv = document.querySelector('.resultsArea');
   var item = document.querySelector('.results-item');
   for(var i = 0;i<json.items.length;i++){
-
-    if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
+//we are allowing only fully uploaded videos or playlist items. Not channel or livestream or premiere results.
+    if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem' || json.items[i].liveBroadcastContent == 'none'){
       var clone = item.cloneNode(true);
       //add image and length
       clone.childNodes[1].childNodes[1].src = json.items[i].snippet.thumbnails.medium.url;
