@@ -283,7 +283,9 @@ function fixElements(json){
           timestamp += '00:';
         }
       }
-      if(seconds == ''){seconds = '00'}
+      if(seconds == '' && minutes != ''){
+        seconds = '00';
+      }
       timestamp += seconds;
       
       json.items[i].snippet.length = timestamp;
@@ -375,10 +377,6 @@ function removeResults(){
 }
 
 function getPLaylistID(link){
-  let parts = link.split('&');
-  for(i in parts){
-    if(parts[i].startsWith('list')){
-      return parts[i].substring(5);
-    }
-  }
+  let IdPart = link.split('list=');
+  return IdPart[1];
 }
