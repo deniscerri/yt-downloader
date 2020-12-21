@@ -13,9 +13,9 @@ var searchBtn = document.querySelector('#search-button')
 var headerImg = document.querySelector('div[class="headerImage"] > img');
 
 
+
+
 var baseURL = 'https://denisytdl.herokuapp.com';
-
-
 
 
 
@@ -89,18 +89,17 @@ function downloadMp3(id){
   console.log('Downloading: '+id);
   window.location.href = `${baseURL}/download/${source}/?URL=${id}`;
 
-  // TO IMPLEMENT LATER ==========================
   
-//   let request = new XMLHttpRequest();
-//   let url = `${baseURL}/download/${source}/?URL=${id}`;
+  // let request = new XMLHttpRequest();
+  // let url = `${baseURL}/download/${source}/?URL=${id}`;
   
-//   request.open('GET', url);
-//   request.responseType = 'text';
+  // request.open('GET', url);
+  // request.responseType = 'text';
   
-//   request.onprogress = function(e){
-//     console.log(e.loaded + "  "+ e.total);
-//   }
-//   request.send();
+  // request.onprogress = function(e){
+  //   console.log(e.loaded + "  "+ e.total);
+  // }
+  // request.send();
 }
 
 function downloadMp4(id){
@@ -117,8 +116,6 @@ function inputQuery(e){
 
   //if we recieve input we remove the red border 
   input.style.border = "1px solid #0485ff";
-  mp3Btn.style.background = "#323232";
-  mp3Btn.style.border = "2px solid #323232";
 
   //while we are writing we show the search button
   searchBtn.style.display = 'inline-flex';
@@ -132,6 +129,7 @@ function inputQuery(e){
   headerImg.src = '';
   headerImg.style.display = 'none';
 
+  //by default we use the youtube downloader
   source = 'yt';
 
   //if we delete and input is empty we show red around the bar
@@ -146,9 +144,7 @@ function inputQuery(e){
       searchBtn.style.display = 'none';
       mp3Btn.style.display = 'inline-flex';
       
-      //color the mp3 button like the spotify color and hide the mp4 button because we dont need it
-      mp3Btn.style.background = '#FF8C00';
-      mp3Btn.style.border = "2px solid #FF8C00";
+      //Hide the mp4 button because we dont need it
       mp4Btn.style.display = "none";
 
       //we show the soundcloud logo
@@ -164,9 +160,7 @@ function inputQuery(e){
     searchBtn.style.display = 'none';
     mp3Btn.style.display = 'inline-flex';
 
-    //color the mp3 button like the spotify color and hide the mp4 button because we dont need it
-    mp3Btn.style.background = '#1DB954';
-    mp3Btn.style.border = "2px solid #1DB954";
+    //Hide the mp4 button because we dont need it
     mp4Btn.style.display = "none";
 
     //we show the spotify logo
@@ -207,6 +201,7 @@ function addResults(json){
   var resultsDiv = document.querySelector('.resultsArea');
   var item = document.querySelector('.results-item');
   for(var i = 0;i<json.items.length;i++){
+	
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
       var clone = item.cloneNode(true);
       //add image and length
@@ -246,6 +241,8 @@ function fixElements(json){
       let a = '';
       let timestamp = '';
       let hours = '',minutes = '',seconds = '';
+      /*A timestamp format is like this: PT2M15S. This shows a video 2mins and 15 secons long
+       */
       for (let i = 0; i < tmp.length; i++) {
         if(tmp[i]== 'H' || tmp[i]== 'M' || tmp[i]== 'S' ){
             if(parseInt(a) < 10){
@@ -377,6 +374,6 @@ function removeResults(){
 }
 
 function getPLaylistID(link){
-  let IdPart = link.split('list=');
-  return IdPart[1];
+  let IDPart = link.split('list=');
+  return IDPart[1];
 }
