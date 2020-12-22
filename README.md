@@ -31,11 +31,11 @@
 
 ## How does it work:
 - Youtube
-  -For listing search results and playlist videos we call the youtube api two times. 1 time to get the results and the 2nd to get more details for each video. The 2nd call is made so we can show view count, release date and video length, making it easier to differentiate which video we want to download.
+    -For listing search results and playlist videos we call the youtube api two times. 1 time to get the results and the 2nd to get more details for each video. The 2nd call is made so we can show view count, release date and video length, making it easier to differentiate which video we want to download.
   
-  -Downloading
-    -Audio: They get downloaded as m4a, which is a better audio format than mp3 but most people dont really recognise that format and sometimes think of it as an mp4 file. We use ffmpeg to convert it and pipe it immediately through a download stream.
-    -Video: There are two ways to download video. First one is to download a stream which has both audio and video together, but this method doesnt download the best quality. Youtube splits audio and video streams for higher quality videos. To get the best out of it, we download audio and video separately and use ffmpeg to mux them together and send them for download like we did with the audio.
+    -Downloading
+        -Audio: They get downloaded as m4a, which is a better audio format than mp3 but most people dont really recognise that format and sometimes think of it as an mp4 file. We use ffmpeg to convert it and pipe it immediately through a download stream.
+        -Video: There are two ways to download video. First one is to download a stream which has both audio and video together, but this method doesnt download the best quality. Youtube splits audio and video streams for higher quality videos. To get the best out of it, we download audio and video separately and use ffmpeg to mux them together and send them for download like we did with the audio.
   
 - SoundCloud
   It doesn't need any extra tool since the file downloads as mp3 out of the box.
