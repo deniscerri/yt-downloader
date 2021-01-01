@@ -15,12 +15,12 @@
     "ffmpeg": "0.0.4",
     "ffmpeg-static": "^4.2.7",
     "fluent-ffmpeg": "^2.1.2",
-    "music-metadata": "^7.5.0",
+    "music-metadata": "^7.5.3",
     "mv": "^2.1.1",
     "node-fetch": "^2.6.1",
-    "soundcloud-downloader": "^0.2.1",
+    "soundcloud-downloader": "^0.2.2",
     "youtube-dl": "^3.0.2",
-    "ytdl-core": "^4.1.2"
+    "ytdl-core": "^4.3.0"
   },
   "devDependencies": {},
   "description": ""
