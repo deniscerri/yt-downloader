@@ -7,16 +7,7 @@
 
 **Convert any video, playlist on youtube to mp3 or mp4 format in their highest quality possible. Also Download SoundCloud songs too :)**
 
----
-## Changelog:
-- v1.0 - Create project. Basic audio/video download functionality
-- v1.1 - SoundCloud Download Functionality
-- v1.2 - Design Change. Youtube Search Functionality 
-- v1.3 - Playlist support by listing all its videos
-- v1.4 - Making downloads start immediately regardless of video length or size. In this case, download speeds suffer because of the file getting encoded while you are doing it. If you host it on a high performing server, you will get better results.
----
-
-## How to use:
+## Usage:
 - Youtube link
     - If you have normal video link, paste it and press mp3 or mp4. If you want to download playlist videos make sure its a costum playlist and not a YouTube Mix one. Those playlists are costumised for your account and they will show random results in the page. 
     If you want to download the first song from that playlist, remove the playlist portion:
@@ -50,4 +41,15 @@
 - [x] playlist support
 - [x] add extra details
 - [ ] select quality
+
+
+
+---
+## Changelog:
+- v1.0 - Create project. Basic audio/video download functionality
+- v1.1 - SoundCloud Download Functionality
+- v1.2 - Design Change. Youtube Search Functionality 
+- v1.3 - Playlist support by listing all its videos
+- v1.4 - Making downloads start immediately regardless of video length or size. In this case, download speeds suffer because of the file getting encoded while you are doing it. If you host it on a high performing server, you will get better results.
+---
 
