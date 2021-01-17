@@ -32,7 +32,7 @@
   It doesn't need any extra tool since the file downloads as mp3 out of the box.
 
 ## Link:
-[Click Here!](http://denisytdl.herokuapp.com/)
+[Click Here!](http://denisytdl.herokuapp.com/) [Or Here](http://ytdl.deniscerri.repl.co/)
 
 ---
 ### ToDo:
