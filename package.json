@@ -20,7 +20,7 @@
     "node-fetch": "^2.6.1",
     "soundcloud-downloader": "^0.2.3",
     "youtube-dl": "^3.0.2",
-    "ytdl-core": "^4.4.2"
+    "ytdl-core": "^4.4.3"
   },
   "devDependencies": {},
   "description": ""
