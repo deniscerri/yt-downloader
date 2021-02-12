@@ -203,6 +203,7 @@ function addResults(json){
   for(var i = 0;i<json.items.length;i++){
 	
     if(json.items[i].id.kind == 'youtube#video' || json.items[i].kind == 'youtube#playlistItem'){
+      try{
       var clone = item.cloneNode(true);
       //add image and length
       clone.childNodes[1].childNodes[1].src = json.items[i].snippet.thumbnails.medium.url;
@@ -212,6 +213,9 @@ function addResults(json){
       clone.childNodes[3].childNodes[3].childNodes[1].innerHTML = json.items[i].snippet.channelTitle;
       clone.childNodes[3].childNodes[3].childNodes[3].innerHTML = json.items[i].snippet.views;
       clone.childNodes[3].childNodes[3].childNodes[5].innerHTML = json.items[i].snippet.publishTime;
+      }catch(err){
+      	continue;
+      }
       //add youtube videoID to the buttons
       if(json.items[i].kind == 'youtube#playlistItem'){
         clone.childNodes[3].childNodes[5].id = 'https://youtube.com/watch?v=' + json.items[i].snippet.resourceId.videoId;
