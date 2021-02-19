@@ -19,7 +19,7 @@
     "mv": "^2.1.1",
     "node-fetch": "^2.6.1",
     "soundcloud-downloader": "^0.2.4",
-    "youtube-dl": "^3.0.2",
+    "youtube-dl": "^3.4.0",
     "ytdl-core": "^4.4.5"
   },
   "devDependencies": {},
