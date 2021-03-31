@@ -18,7 +18,7 @@
     "music-metadata": "^7.6.6",
     "mv": "^2.1.1",
     "node-fetch": "^2.6.1",
-    "soundcloud-downloader": "^0.2.4",
+    "soundcloud-downloader": "^1.0.0",
     "youtube-dl": "^3.0.2",
     "ytdl-core": "^4.5.0"
   },
