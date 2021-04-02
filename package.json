@@ -13,7 +13,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ffmpeg": "0.0.4",
-    "ffmpeg-static": "^4.2.7",
+    "ffmpeg-static": "^4.3.0",
     "fluent-ffmpeg": "^2.1.2",
     "music-metadata": "^7.6.6",
     "mv": "^2.1.1",
