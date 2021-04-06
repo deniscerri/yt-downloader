@@ -5,7 +5,7 @@
 
 # Purpose
 
-**Convert any video, playlist on youtube to mp3 or mp4 format in their highest quality possible. Also Download SoundCloud songs too :)**
+**Convert any video, playlist on youtube to audio or video format in their highest quality possible. Also Download SoundCloud songs too :)**
 
 ## Usage:
 - Youtube link
