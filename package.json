@@ -1,27 +1,31 @@
 {
-  "name": "ytdown",
-  "version": "1.0.0",
+  "name": "converter",
+  "version": "1.0.4",
+  "description": "Simple youtube/soundcloud converter to mp3/mp4",
   "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "any-shell-escape": "^0.1.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "ffmpeg": "0.0.4",
-    "ffmpeg-static": "^4.2.7",
-    "fluent-ffmpeg": "^2.1.2",
-    "music-metadata": "^7.6.6",
-    "mv": "^2.1.1",
-    "node-fetch": "^2.6.1",
-    "soundcloud-downloader": "^0.2.4",
-    "youtube-dl": "^3.0.2",
-    "ytdl-core": "^4.8.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deniscerri/converter.git"
   },
-  "devDependencies": {},
-  "description": ""
+  "author": "Denis Çerri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deniscerri/converter/issues"
+  },
+  "homepage": "https://github.com/deniscerri/converter#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "content-disposition": "^0.5.3",
+    "express": "^4.17.1",
+    "ffmpeg-static": "^4.3.0",
+    "node-fetch": "^2.6.1",
+    "soundcloud-downloader": "^1.0.0",
+    "ytdl-core": "^4.8.2"
+  }
 }
