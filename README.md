@@ -8,9 +8,9 @@
 **Convert any video, playlist on youtube to audio or video format in their highest quality possible. Also Download SoundCloud songs too :)**
 
 ## Usage:
- -Drop youtube video/playlist link. As long as its not private, it will download.
- -Drop soundloud link.
- -Profit
+ -Drop youtube video/playlist link. As long as its not private, it will download.  
+ -Drop soundloud link.  
+ -Profit  
 
 ## My Host:
 Hosts like Heroku and Repl are fine for testing but performance is very lackluster.
