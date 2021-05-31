@@ -3,6 +3,8 @@
   <img src="./public/logos/sc.png" width="100" /> 
 </p>
 
+This repo uses ytdl-core and other dependencies to function.  
+
 # Purpose
 
 **Convert any video, playlist on youtube to audio or video format in their highest quality possible. Also Download SoundCloud songs too :)**
