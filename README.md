@@ -16,4 +16,4 @@ This repo uses ytdl-core and other dependencies to function.
 
 ### My Host:
 Hosts like Heroku and Repl are fine for testing but performance is very lackluster.
-[Click Here!](http://denisytdl.herokuapp.com/)
+[Click Here!](https://ytdl.deniscerri.repl.co/) [Or Here](http://denisytdl.herokuapp.com/)  
