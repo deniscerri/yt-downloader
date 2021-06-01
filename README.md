@@ -11,7 +11,9 @@ This repo uses ytdl-core and other dependencies to function.
 
 ## Usage:
  -Drop youtube video/playlist link. As long as its not private, it will download.  
- -Drop soundloud link.  
+ -Drop soundloud link.
+ -Search anything on youtube.
+ -Click Audio/Video icon to download.
  -Profit  
 
 ### My Host:
