@@ -15,7 +15,8 @@ var headerImg = document.querySelector('div[class="headerImage"] > img');
 
 
 
-var baseURL = 'https://denisytdl.herokuapp.com';
+var baseURL = window.location.href;
+
 
 
 
