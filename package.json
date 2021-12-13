@@ -21,7 +21,7 @@
   "homepage": "https://github.com/deniscerri/converter#readme",
   "dependencies": {
     "child_process": "^1.0.2",
-    "content-disposition": "^0.5.3",
+    "content-disposition": "^0.5.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "ffmpeg-static": "^4.4.0",
