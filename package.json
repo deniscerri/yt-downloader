@@ -23,7 +23,7 @@
     "child_process": "^1.0.2",
     "content-disposition": "^0.5.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "ffmpeg-static": "^4.4.0",
     "node-fetch": "^3.2.3",
     "soundcloud-downloader": "^1.0.0",
