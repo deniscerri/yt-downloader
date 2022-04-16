@@ -27,6 +27,6 @@
     "ffmpeg-static": "^4.4.0",
     "node-fetch": "^3.2.3",
     "soundcloud-downloader": "^1.0.0",
-    "ytdl-core": "^4.9.1"
+    "ytdl-core": "^4.11.0"
   }
 }
