@@ -23,7 +23,7 @@
     "content-disposition": "^0.5.4",
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "ffmpeg-static": "^5.0.0",
+    "ffmpeg-static": "^5.0.1",
     "node-fetch": "^3.2.6",
     "soundcloud-downloader": "^1.0.0",
     "ytdl-core": "^4.11.0"
